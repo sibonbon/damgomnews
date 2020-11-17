@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:tn="hyyp://www.w3.org/1999/xhtml"
+	xmlns:sec="hyyp://www.w3.org/1999/xhtml">
+	<head>
+	<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+		<form th:action="@{/user/join}" th:object="${user}" method="post">
+		<label>아이디: </label>
+		<input type="text" th:field="*{userId}"><br><br>
+		<label>비밀번호: </label>
+		<input type="password" th:field="*{password}"><br><br>
+		<label>닉네임: </label>
+		<input type="text" th:field="*{userName}"><br><br>
+		<label>이메일: </label>
+		<input type="text" th:field="*{email}"><br><br>
+		<input type="submit"value="회원가입 완료">	
+</body>
+</html>

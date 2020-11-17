@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>add</title>
+</head>
+<body>
+	<form th:action="@{/news/add}" th:object="${newsArticle}" method="post">
+		<label></label>
+		<input type="hidden" th:field="*{id}"><br><br>
+		<!--text 대신 hidden으로 하면 아예 안보이고 readonly로 하면 보기만 할 수 있음-->
+		<label>뉴스 제목: </label>
+		<input type="text" th:field="*{title}"><br><br>
+		<label>뉴스 카테고리: </label>
+		<select th:field="*{category}">
+			<option value="연예">연예</option>
+			<option value="사회">사회</option>
+			<option value="스포츠">스포츠</option>
+			<option value="일반">일반</option>
+			</select><br><br>
+		<label>뉴스 내용: </label>
+		<input type="text" th:field="*{contents}"><br><br>
+		<label>뉴스 작성자: </label>
+		<input type="text" th:field="*{author}" readonly="readonly"><br><br>
+		<input type="submit"value="뉴스 저장">	
+	</form>
+</body>
+</html>

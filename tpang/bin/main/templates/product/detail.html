@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeLeaf.org">
+   <head>
+      <title>
+          제목
+       </title>
+      <meta charset = "utf-8">
+   </head>
+   <body>
+      <a href="/product">
+      		<img src= "https://item.kakaocdn.net/do/b66faf7c60b62f1fa327014ea4f8aa46f43ad912ad8dd55b04db6a64cddaf76d">
+      		농담곰을 누르면 메인화면으로 이동합니다.
+      	</a>
+      <!-- 이게 주석쓰는 법 -->
+      <div th:if = "${product != null}" >
+      	카테고리 : <label th:text="${product.productName}"></label><br>
+      	제목 : <label th:text="${product.productDetail}"></label><br>
+      	내용 : <label th:text="${product.productPrice}"></label><br>
+      	작성자 : <label th:text="${product.productQuantity}"></label><br>
+		<a th:href="@{'/product/delete?idx='+${product.id}}">기사 삭제</a>
+      	<a th:href="@{'/product/modify?idx='+${product.id}}">기사 수정</a>
+      	<table style="border: 5px solid #D941C5;">
+			<thead>
+				<tr style="border: 2px solid #7E41D9;">
+					<th style="border: 2px solid #7E41D9;">ID</th>
+					<th style="border: 2px solid #7E41D9;">내용</th>
+					<th style="border: 2px solid #7E41D9;">작성자</th>
+					<th style="border: 2px solid #7E41D9;">수정</th>
+					<th style="border: 2px solid #7E41D9;">삭제</th>
+				</tr>
+			</thead>
+		</table>
+		<!-- 댓글 입력 UI 위치 -->
+   </body>
+</html>>

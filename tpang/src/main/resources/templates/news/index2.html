@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeLeaf.org">
+   <head>
+      <title>
+          제목
+       </title>
+      <meta charset = "utf-8">
+            <style>
+      	h1{text-align:center;}	
+      	h2{text-align:center;}	
+      	p{text-align:right;}	
+      </style>    
+   </head>
+   <body>
+     <body style=" background-image:url('https://blog.kakaocdn.net/dn/zAyA0/btqDF0Cyqhp/MskCdEQweAd101mjC2qRy0/img.jpg');  background-size: 100% 100%;
+   "> 
+    <img src="img/i16583284983.gif">
+         	<h1>
+      		<label th:text = "${category}">
+      </label>
+      		</h1>
+ 	 <h2> <a href="/news?cat=연예">연예</a> </h2>
+      <h2> <a href="/news?cat=사회">사회</a> </h2>
+     <h2>  <a href="/news?cat=생활">생활</a> </h2>
+      <h2> <a href="/news?cat=스포츠">스포츠</a> </h2>
+      <label th:text="${loginMsg}"></label>
+      <label th:text="${session.id}"></label>
+      <div th:if="${session.user != null}">
+     	 <label th:text="${session.user.userName}"></label>님 어서오세요<br>
+      	<form th:action="@{/user/logout}">
+      		<input type="submit"value="로그아웃하기">	</form>
+      </div>
+      <p><a href="/news/add">기사 추가하기</a></p>
+		<h1><table style="border: 5px solid rgb(128, 128, 128);margin : auto; text-align: center">
+			<thead>
+				<tr style="border: 2px solid rgb(192, 192, 192);">
+					<th style="border: 2px solid rgb(192, 192, 192);">ID</th>
+					<th style="border: 2px solid rgb(192, 192, 192);">제목</th>
+					<th style="border: 2px solid rgb(192, 192, 192);">내용</th>
+					<th style="border: 2px solid rgb(192, 192, 192);">카테고리</th>
+					<th style="border: 2px solid rgb(192, 192, 192);">기자</th>
+					<th style="border: 2px solid rgb(192, 192, 192);">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="border: 1px solid rgb(255, 255, 255);" th:each="item : ${newsArticleList}">
+					<td style="border: 1px solid rgb(255, 255, 255);" th:text="${item.id}"></td>
+					<td style="border: 1px solid rgb(255, 255, 255);"><a th:href="@{'/news/detail2?idx='+${item.id}}" th:text="${item.title}"></a></td>
+					<td style="border: 1px solid rgb(255, 255, 255);" th:text="${item.contents}"></td>
+					<td style="border: 1px solid rgb(255, 255, 255);" th:text="${item.category}"></td>
+					<td style="border: 1px solid rgb(255, 255, 255);" th:text="${item.createdBy}"></td>
+					<td style="border: 1px solid rgb(255, 255, 255);" th:text="${item.createdDate}"></td>
+				</tr>
+			</tbody>
+		</table></h1>
+	</body>
+</html>
+   </body>
+</html>

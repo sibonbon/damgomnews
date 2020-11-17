@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품등록</title>
+</head>
+<body>
+	<form th:action="@{/product/add}" th:object="${product}" method="post">
+		<input type="hidden" th:field="*{id}"><br><br>
+		<!--text 대신 hidden으로 하면 아예 안보이고 readonly로 하면 보기만 할 수 있음-->
+		<label>상품명: </label>
+		<input type="text" th:field="*{productName}"><br><br>
+		<label>상품 카테고리: </label>
+		<select th:field="*{productDetail}">
+			<option value="문구/잡화">문구/잡화</option>
+			<option value="전자/가전">전자/가전</option>
+			<option value="생활품">생활품</option>
+			<option value="신선식품">신선식품</option>
+			</select><br><br>
+		<label>상품 가격: </label>
+		<input type="text" th:field="*{productPrice}"><br><br>
+		<label>잔여 수량: </label>
+		<input type="text" th:field="*{productQuantity}"><br><br>
+		<label>회사명: </label>
+		<input type="text" th:field="*{companyName}" readonly="readonly"><br><br>
+		<input type="submit"value="상품등록하기">	
+	</form>
+</body>
+</html>
+

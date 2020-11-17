@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeLeaf.org">
+   <head>
+      <title>
+          제목
+       </title>
+      <meta charset = "utf-8">
+            <style>
+      	h1{text-align:center;}	
+      	h2{text-align:center;}	
+      	p{text-align:right;}	
+      </style>    
+   </head>
+   <body>
+     <body style=" background-image:url('https://blog.kakaocdn.net/dn/zAyA0/btqDF0Cyqhp/MskCdEQweAd101mjC2qRy0/img.jpg');  background-size: 100% 100%;
+   "> 
+         	<h1>
+      		<label th:text = "${category}">
+      </label>
+      		</h1>
+      		<span style=" font: italic bold 1.5em/1em Georgia, serif ; color: green;">
+여기는 폰트 속성을 한꺼번에 주고 색상을 녹색으로 주었다
+</span>
+ 	 <h2> <a href="/news?cat=연예">문구/잡화</a> </h2>
+      <h2> <a href="/news?cat=사회">전자/가전</a> </h2>
+     <h2>  <a href="/news?cat=생활">생활품</a> </h2>
+      <h2> <a href="/news?cat=스포츠">신선식품</a> </h2>
+      <label th:text="${loginMsg}"></label>
+      <label th:text="${session.id}"></label>
+      <div th:if="${session.user != null}">
+     	 <label th:text="${session.user.userName}"></label>님 어서오세요<br>
+      	<form th:action="@{/user/logout}">
+      		<input type="submit"value="로그아웃하기">	</form>
+      </div>
+      <p><a href="/product/add">판매상품 추가하기</a></p>
+		<h1><table style="border: 5px solid rgb(128, 128, 128);margin : auto; text-align: center">
+			<thead>
+				<tr style="border: 2px solid rgb(192, 192, 192);">
+					<th style="border: 2px solid rgb(192, 192, 192);">상품명</th>
+					<th style="border: 2px solid rgb(192, 192, 192);">상세내용</th>
+					<th style="border: 2px solid rgb(192, 192, 192);">가격</th>
+					<th style="border: 2px solid rgb(192, 192, 192);">재고</th>
+					<th style="border: 2px solid rgb(192, 192, 192);">회사명</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="border: 1px solid rgb(255, 255, 255);" th:each="item : ${productList}">
+					<td style="border: 1px solid rgb(255, 255, 255);" th:text="${item.id}"></td>
+					<td style="border: 1px solid rgb(255, 255, 255);"><a th:href="@{'/product/detail?idx='+${item.id}}" th:text="${item.productName}"></a></td>
+					<td style="border: 1px solid rgb(255, 255, 255);" th:text="${item.productPrice}"></td>
+					<td style="border: 1px solid rgb(255, 255, 255);" th:text="${item.productQuantity}"></td>
+					<td style="border: 1px solid rgb(255, 255, 255);" th:text="${item.companyName}"></td>
+				</tr>
+			</tbody>
+		</table></h1>
+	</body>
+</html>
+   </body>
+</html>

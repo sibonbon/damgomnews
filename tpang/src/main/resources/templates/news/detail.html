@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeLeaf.org">
+   <head>
+      <title>
+          제목
+       </title>
+      <meta charset = "utf-8">
+   </head>
+   <body>
+      <a href="/news">
+      		<img src= "https://item.kakaocdn.net/do/b66faf7c60b62f1fa327014ea4f8aa46f43ad912ad8dd55b04db6a64cddaf76d">
+      		농담곰을 누르면 메인화면으로 이동합니다.
+      	</a>
+      <!-- 이게 주석쓰는 법 -->
+      <div th:if = "${newsArticle != null}" >
+      	카테고리 : <label th:text="${newsArticle.category}"></label><br>
+      	제목 : <label th:text="${newsArticle.title}"></label><br>
+      	내용 : <label th:text="${newsArticle.contents}"></label><br>
+      	작성자 : <label th:text="${newsArticle.author}"></label><br>
+		<a th:href="@{'/news/delete?idx='+${newsArticle.id}}">기사 삭제</a>
+      	<a th:href="@{'/news/modify?idx='+${newsArticle.id}}">기사 수정</a>
+      	<table style="border: 5px solid #D941C5;">
+			<thead>
+				<tr style="border: 2px solid #7E41D9;">
+					<th style="border: 2px solid #7E41D9;">ID</th>
+					<th style="border: 2px solid #7E41D9;">내용</th>
+					<th style="border: 2px solid #7E41D9;">작성자</th>
+					<th style="border: 2px solid #7E41D9;">수정</th>
+					<th style="border: 2px solid #7E41D9;">삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="border: 1px solid #A366FF;" th:each="item : ${newsArticle.replies}">
+					<td style="border: 1px solid #A366FF;" th:text="${item.id}"></td>
+					<td style="border: 1px solid #A366FF;" th:text="${item.contents}"></td>
+					<td style="border: 1px solid #A366FF;" th:text="${item.userId}"></td>
+					<th style="border: 2px solid #7E41D9;">
+				<a th:href="@{'/news/reply/modify?newsArticleId=' +${newsArticle.id} + '&idx='+${item.id}}">수정</a></th>
+				<th><a th:href="@{'/news/reply/delete?newsArticleId=' +${newsArticle.id} + '&idx='+${item.id}}">삭제</a></th>
+				</tr>
+
+			</tbody>
+		</table>
+		<!-- 댓글 입력 UI 위치 -->
+	<form th:action="@{/news/reply/add}" th:object="${newsReply}" method="post">
+		<label></label>
+		<input type="hidden" name="newsArticleId" th:value=${newsArticle.id}><br><br>
+		<!--text 대신 hidden으로 하면 아예 안보이고 readonly로 하면 보기만 할 수 있음-->
+		<input type="text" th:field="*{id}"><br><br>
+		<label>작성자: </label>
+		<input type="text" th:field="*{userId}" readonly="readonly"><br><br>
+		<label>내용: </label>
+		<input type="text" th:field="*{contents}"><br><br>
+		<input type="submit"value="댓글 저장">	</form>
+		<a th:href="@{'/news/reply/modify?idx='+${newsReply.id}}">댓글 수정</a>
+   </body>
+</html>>
